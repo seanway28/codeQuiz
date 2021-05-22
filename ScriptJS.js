@@ -1,4 +1,5 @@
-// Create timer
+// codeQuiz
+//Create timer
 
 // Event handler for Start button (starts timer) and fetches first question
 
@@ -9,6 +10,13 @@ function getData(url, cb) {
       .then(response => response.json())
       .then(result => cb(result));
   }
+
+  async function consumingFunc (url) {
+    let response = await fetch(url)
+    console.log(response)
+  }
+
+  consumingFunc
 
 console.log(questions)
 // Append first question to DOM
