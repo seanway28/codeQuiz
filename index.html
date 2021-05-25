@@ -1,38 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Question Test</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- <script src="jquery-3.4.1.min.js"></script> -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quiz</title>
+    <!--Links to Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <!--Links to the external css stylesheet-->
+    <link ref="stylesheet" href="./assets/css/style.css">
+    
 </head>
 
 <body>
-    <div class = 'container'>
-        <div id='questionsCon' class='hide'>
-            <div id="question">Question</div>
-            <div>Time Remaining <span id="time">02:00</span></div>
-            <div>Score<span id='score'></span></div>
-            <div id="answer-buttons" class="btn-grid">
-                <button class='btn'>Answer 1</button>
-                <button class='btn'>Answer 2</button>
-                <button class='btn'>Answer 3</button>
-                <button class='btn'>Answer 4</button>
+    <div class ="container">
+        <!--Header sections with High Scores and the Timer-->
+        <header class="row">
+            <div class="col-sm-2" id="highscores">
+                <a>View High Scores</a  
+                  //This is where the questions are housed with the choice options and the correct answer identified. 
+                  let questions = [
+                      {
+                          question: "",
+                          choiceA: "",
+                          choiceB: "",
+                          choiceC: "",
+                          choiceD: "",
+                          correct: "A"
+                      },
+                      {
+                  
+                      }
+                  ]>
             </div>
-        </div> 
-        <div id='choices'>
-            <button id="start-btn" class='start-btn btn'>Start</button>
-            <button id="next-btn" class='next-btn btn hide'>Next Question</button>
-            <button id="submit-btn" class='submit-btn btn hide'>Submit</button>
-        </div>
-        
-    </div>
-</body>
+            <div class="col-sm-8"></div>
+            <div class="col-sm-2" id="timer">
+                Time: 
+            </div>
+        </header>
+
+        <!--This will be the main page that the user will first see-->
+        <section id="front-page" class="show">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>Coding Quiz Challenge</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>Try to answer the following code-related questions within the time limit.
+                        Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <button id="startBtn">Start Quiz</button>
+                </div>
+            </div>
+        </section>
+
+        <!--Coding Questions Setup, using class="hide" so this will only show after the quiz has begun-->
+        <section id="quiz" class="hide">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 id="question"></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="choice" id="A"></button>
+                </div>
+            </div>
+        </section>
     
-<script src="script.js"></script>
+    
+    <!--Links to the external javascript file-->
+    <script src="./assets/js/script.js"></script>
 </body>
 
-</html> 
+
+</html>

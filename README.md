@@ -2,7 +2,6 @@
 
 
 
-API https://quizapi.io/api/v1/questions?apiKey=TNcx4VpjC6VDN3gD5wRGbwOXe8hWHUJFBYZ5EjCV`, (data) => data.json());
 
 # codeQuiz
 
