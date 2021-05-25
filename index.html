@@ -6,79 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
     <!--Links to Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!--Links to the external css stylesheet-->
-    <link ref="stylesheet" href="./assets/css/style.css">
+    <link ref="stylesheet" href="./style2.css">
+    <link rel="stylesheet" href="style.css">
     
 </head>
 
 <body>
-    <div class ="container">
-        <!--Header sections with High Scores and the Timer-->
-        <header class="row">
-            <div class="col-sm-2" id="highscores">
-                <a>View High Scores</a  
-                  //This is where the questions are housed with the choice options and the correct answer identified. 
-                  let questions = [
-                      {
-                          question: "",
-                          choiceA: "",
-                          choiceB: "",
-                          choiceC: "",
-                          choiceD: "",
-                          correct: "A"
-                      },
-                      {
-                  
-                      }
-                  ]>
-            </div>
-            <div class="col-sm-8"></div>
-            <div class="col-sm-2" id="timer">
-                Time: 
-            </div>
-        </header>
+    <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1"><a>View High Scores</a ></span>
+            <p class="text-right text-white">
+               Time: <span id="timer">120</span>
+            </p>
+    </nav>
+    
+    <div class="jumbotron" id="initial-page">
+        <h1 class="display-4 text-center">Coding Quiz Challenge</h1>
+        <p class="lead text-center">Try to answer the following code-related questions within the time limit.
+            Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+        <hr class="my-4">
+        
+        <button class="btn btn-danger mx-auto" id="startBtn">Begin Quiz</button>
+    </div>
 
         <!--This will be the main page that the user will first see-->
-        <section id="front-page" class="show">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h1>Coding Quiz Challenge</h1>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <p>Try to answer the following code-related questions within the time limit.
-                        Keep in mind that incorrect answers will penalize your score/time by ten seconds!
-                    </p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <button id="startBtn">Start Quiz</button>
-                </div>
-            </div>
-        </section>
+      
 
         <!--Coding Questions Setup, using class="hide" so this will only show after the quiz has begun-->
-        <section id="quiz" class="hide">
+        <section id="quiz" >
             <div class="row">
                 <div class="col-sm-12">
-                    <h2 id="question"></h2>
+                    <h2 id="question">Placeholder</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <button class="choice" id="A"></button>
+                    <button class="btn btn-info" id="A">choice</button><br>
+                    <button class="btn btn-info" id="B">choice</button><br>
+                    <button class="btn btn-info" id="C">choice</button><br>
+                    <button class="btn btn-info" id="D">choice</button>
                 </div>
             </div>
         </section>
     
     
     <!--Links to the external javascript file-->
-    <script src="./assets/js/script.js"></script>
+    <script src="./scriptJS.js"></script>
 </body>
 
 
