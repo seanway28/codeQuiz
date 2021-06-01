@@ -1,3 +1,13 @@
-.hide{
-    display: none;
+body {
+    background-color: rgb(235, 235, 235);
+    font-family: Georgia, serif;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.stats {
+    background-color: white;
+    border-bottom: 1px solid black;
 }
