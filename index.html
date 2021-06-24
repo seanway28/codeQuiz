@@ -11,3 +11,35 @@ Index.html
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
+<body>
+    <div class="hs container">
+        <h2>High Scores</h2>
+        <ol class="high-scores"></ol>
+        <button id="clear-scores" class="li-btn btn">Clear Highscores</button>
+    </div>
+    <div id='introContainer' class="container">
+        <div>You are about to take a JavaScript quiz.  It will be a 90 second quiz. <br>For each wrong answer 5 seconds will be deducted from the final time score. <br> The quiz is over when you answer all questions or the timer runs out.<br> When you are ready to begin click the Start Quiz button.<br> GOOD LUCK!</div>
+        <button id="start-btn" class='btn'>Start Quiz</button>
+    </div>
+    <div class="showTime container"><span>Time Remaining:</span><span id="timer"> 90</span></div>
+    <div id="quiz">
+
+        <div id="questionContainer">
+            <div id="question"></div>
+            <div id="choices"></div>
+        </div>
+    </div>
+    <div id="resultContainer" class="container">
+        <h2> Congratulations You Completed the Quiz!</h2>
+
+        <p>Your final score is <span id="final-score"></span>.</p>
+        <form>
+            Enter initials: <input type="text" id="initials" max="2">
+            <input id="btn" type="submit" value="Submit" onclick="saveScore();">
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+  
