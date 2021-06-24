@@ -75,3 +75,62 @@ function displayQuestions() {
     questionId.innerHTML = question;
     // clear old choices
     choicesId.innerHTML = ''}
+
+        // get choices
+        thisQuestion.answers.forEach(function(answer, i) {
+            var choiceBtn = document.createElement('button');
+            choiceBtn.setAttribute('id', 'choices');
+            choiceBtn.setAttribute('class', 'li-btn btn')
+            choiceBtn.setAttribute('value', answer);
+            choiceBtn.innerHTML = i + 1 + ". " + answer;
+            // click event listener
+            choiceBtn.onclick = answerQuestion;
+            // append to div
+            choicesId.appendChild(choiceBtn);
+         });
+    
+         function answerQuestion() {
+            if (this.value !== correct) {
+                timeLeft = timeLeft - 5;
+                if (timeLeft < 0) {
+                    timeLeft === 0;
+                }
+                // update timeLeft (only semi works. It flashes, but won't stay)
+                document.getElementById('timer').innerHTML = " " + timeLeft;
+            }}
+
+                // update current question
+    currentQuestion++;
+
+    if (currentQuestion === questionsArr.length) {
+        quizDone();
+    } else {
+        displayQuestions();
+    }
+
+    // run if the timer hits 0
+function onTimesUp() {
+    clearInterval(timerInterval);
+    alert('Time is up and your score is 0. To retry click OK.');
+    location.reload();
+};
+
+// countdown timer
+function countdown() {
+    timePassed = timePassed += 1;
+    timeLeft = timerStart - timePassed;
+    if (timeLeft === 0) {
+        onTimesUp();
+    };
+    document.getElementById('timer').innerHTML = " " + timeLeft;
+};
+
+function quizDone() {
+    // stop timer
+    
+    clearInterval(timerInterval);
+    if (timeLeft <= 0) {
+        onTimesUp();
+    }
+
+}
