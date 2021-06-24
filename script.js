@@ -108,14 +108,14 @@ function displayQuestions() {
         displayQuestions();
     }
 
-    // run if the timer hits 0
+    // Run if the timer hits 0
 function onTimesUp() {
     clearInterval(timerInterval);
     alert('Time is up and your score is 0. To retry click OK.');
     location.reload();
 };
 
-// countdown timer
+// COUNTDOWN
 function countdown() {
     timePassed = timePassed += 1;
     timeLeft = timerStart - timePassed;
@@ -126,11 +126,77 @@ function countdown() {
 };
 
 function quizDone() {
-    // stop timer
-    
+    // STOP TIMER
+
     clearInterval(timerInterval);
     if (timeLeft <= 0) {
         onTimesUp();
     }
 
 }
+
+    // HIDE question so we can show results
+    document.getElementById('questionContainer').style.visibility = 'hidden';
+
+    // show results container 
+    document.getElementById('resultContainer').style.visibility = 'visible';
+
+    // update score variable
+    score = document.querySelector('#final-score')
+    score.textContent = timeLeft;
+
+// SCORES
+function saveScore() {
+    var initials = document.querySelector('#initials').value.trim();
+
+    if (initials) {
+        var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+
+        var addScore = {
+            score: timeLeft,
+            initials: initials
+        
+        };
+
+        highScores.push(addScore);
+        localStorage.setItem('highScores', JSON.stringify(highScores));
+    }
+}
+
+var input = document.getElementById("initials");
+input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("btn").click();
+    };
+});
+
+// show high scores
+function displayHighscores() {
+    var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+    highScores.sort(function(a, b) {
+        return b.score-a.score;
+    
+
+    highScores.forEach(function(score) {
+        // list items for each score
+        var scoreList = document.createElement('li');
+        scoreList.innerHTML = ''+ score.score +' - '+ score.initials +'';
+
+        // append to doc
+        var list = document.querySelector('.high-scores');
+        list.appendChild(scoreList);
+    });
+
+}   )
+
+//delete high scores
+var deleteBtn = document.querySelector('#clear-scores')
+deleteBtn.onclick = deleteScores;
+
+function deleteScores() {
+    localStorage.removeItem('highScores');
+    location.reload();
+}
+
+displayHighscores()}
