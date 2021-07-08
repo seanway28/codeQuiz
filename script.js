@@ -1,202 +1,225 @@
-var score = '';
-var questionsArr = [
-    {
-        question: "Which is NOT a JavaScript date type?",
-        answers: ['boolean', 'string', 'infinity', 'number'],
-        correctChoice: 2
-    },
-    {
-        question: 'An undefined variable is a variable that has been given a value.',
-    }]
+Script.js
+document.addEventListener('DOMContentLoaded', (event) => {
 
-    answers: ['True', 'False'],
-    correctChoice; 1
+    //Array of questions
+    var questions = [
+        {
+            question: "String Values must be enclosed within ____ when being assigned to variables. ",
+            choices: ["commas", "curly brackets", "quotes", "parenthesis"],
+            answer: "quotes"
+        },
+        {
+            question: "The condition in an if / else statement is enclosed within .",
+            choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
+            answer: "parentheses"
+        },
+        {
+            question: "Which of these is NOT used to loop?",
+            choices: ["for", "while", "foreach", "sequence"],
+            answer: "sequence"
+        },
+        {
+            question: "which of these is not a way to save a variable?",
+            choices: ["vet", "var", "let", "const"],
+            answer: "vet"
+        },
+        {
+            question: "Arrays in Javascript can be used to store_____",
+            choices: ["numbers and strings", "other arrays", "booleans", "All of the above"],
+            answer: "All of the above"
+        },
+    ];
 
-{
-    question: 'Which symbol is used for single line comments in JavaScript?',
-    answers; ['//', '+', "/*", '$'],
-    correctChoice; 0
-}
+    //Additional Initial Variables
+    const initialTime = 75;
+    let time = 75;
+    let score = 0;
+    let qCount = 0;
+    let timeset;
+    let answers = document.querySelectorAll('#quizContent button');
 
-{
-    question: 'Which is not a looping structure in JavaScript?',
-    answers; ['For', 'While', 'Do-While', 'If'],
-    correctChoice; 3
-}
-{
-    question: 'Which is one of the types of Pop up boxes available in JavaScript?',
-    answers; ['Window', 'Alert', 'Id-Box', 'Pop'],
-    correctChoice; 1
-}
+    //Set the array and if local storage exists it will be populated into the array of records. 
+    let recordsArray = [];
+    //Retrieve the data if it exists, otherwise, keep the array empty
+    (localStorage.getItem('recordsArray')) ? recordsArray = JSON.parse(localStorage.getItem('recordsArray')): recordsArray = [];
 
-{
-    question: 'What National League baseball team holds the most World Series Titles?',
-    answers; ['Chicago Cubs', 'Atlanta Braves', 'St. Louis Cardinals', 'shift property'],
-    correctChoice; 2
-}
-
-var currentQuestion = 0;
-const timerStart = questionsArr.length * 15;
-var timePassed = 0;
-var timeLeft = timerStart;
-
-var timerInterval = null;
-var correctAnswer = questionsArr[currentQuestion].correctChoice;
-var correct = questionsArr[currentQuestion].answers[correctAnswer];
-var playerInitials = document.querySelector('#initials')
-
-// hide question and result containers
-document.getElementById('questionContainer').style.visibility = 'hidden';
-document.getElementById('resultContainer').style.visibility = 'hidden';
-
-// have the quiz function start when the button is clicked
-document.getElementById('start-btn').addEventListener('click', quiz);
-
-function quiz() {
-    // hide intro container
-    document.getElementById('introContainer').style.visibility = 'hidden';
-    // make question container visible
-    document.getElementById('questionContainer').style.visibility = 'visible';
-    
-    // start the countdown function
-    timerInterval = setInterval(countdown, 1000);
-    // start the questions
-    displayQuestions();
-};
-
-
-function displayQuestions() {  
-    var thisQuestion = questionsArr[currentQuestion];    
-    var question = questionsArr[currentQuestion].question;
-    var questionId = document.getElementById('question');
-    var choicesId = document.getElementById('choices');
-
-    // show question
-    questionId.innerHTML = question;
-    // clear old choices
-    choicesId.innerHTML = ''}
-
-        // get choices
-        thisQuestion.answers.forEach(function(answer, i) {
-            var choiceBtn = document.createElement('button');
-            choiceBtn.setAttribute('id', 'choices');
-            choiceBtn.setAttribute('class', 'li-btn btn')
-            choiceBtn.setAttribute('value', answer);
-            choiceBtn.innerHTML = i + 1 + ". " + answer;
-            // click event listener
-            choiceBtn.onclick = answerQuestion;
-            // append to div
-            choicesId.appendChild(choiceBtn);
-         });
-    
-         function answerQuestion() {
-            if (this.value !== correct) {
-                timeLeft = timeLeft - 5;
-                if (timeLeft < 0) {
-                    timeLeft === 0;
-                }
-                // update timeLeft (only semi works. It flashes, but won't stay)
-                document.getElementById('timer').innerHTML = " " + timeLeft;
-            }}
-
-                // update current question
-    currentQuestion++;
-
-    if (currentQuestion === questionsArr.length) {
-        quizDone();
-    } else {
-        displayQuestions();
+    //Function to more efficiently call elments
+    let queryElement = (element) => {
+        return document.querySelector(element);
     }
 
-    // Run if the timer hits 0
-function onTimesUp() {
-    clearInterval(timerInterval);
-    alert('Time is up and your score is 0. To retry click OK.');
-    location.reload();
-};
-
-// COUNTDOWN
-function countdown() {
-    timePassed = timePassed += 1;
-    timeLeft = timerStart - timePassed;
-    if (timeLeft === 0) {
-        onTimesUp();
-    };
-    document.getElementById('timer').innerHTML = " " + timeLeft;
-};
-
-function quizDone() {
-    // STOP TIMER
-
-    clearInterval(timerInterval);
-    if (timeLeft <= 0) {
-        onTimesUp();
+    //Function that hides all sections and then unhides the section that is needed
+    let onlyDisplaySection = (element) => {
+        let sections = document.querySelectorAll("section");
+        Array.from(sections).forEach((userItem) => {
+            userItem.classList.add('hide');
+        });
+        queryElement(element).classList.remove('hide');
     }
 
-}
-
-    // HIDE question so we can show results
-    document.getElementById('questionContainer').style.visibility = 'hidden';
-
-    // show results container 
-    document.getElementById('resultContainer').style.visibility = 'visible';
-
-    // update score variable
-    score = document.querySelector('#final-score')
-    score.textContent = timeLeft;
-
-// SCORES
-function saveScore() {
-    var initials = document.querySelector('#initials').value.trim();
-
-    if (initials) {
-        var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-
-        var addScore = {
-            score: timeLeft,
-            initials: initials
-        
-        };
-
-        highScores.push(addScore);
-        localStorage.setItem('highScores', JSON.stringify(highScores));
+    //Function that is called to reset the HTML display for the score
+    let recordsHtmlReset = () => {
+        queryElement('#highScores div').innerHTML = "";
+        var i = 1;
+        recordsArray.sort((a,b) => b.score - a.score);
+        Array.from(recordsArray).forEach(check =>
+        {
+            var scores = document.createElement("div");
+            scores.innerHTML = i + "." + check.initialRecord + "-" + check.score;
+            queryElement('#highScores div').appendChild(scores);
+            i = i + 1;
+        });
+        i = 0;
+        Array.from(answers).forEach(answer => {
+            answer.classList.remove('disable');
+        });
     }
-}
 
-var input = document.getElementById("initials");
-input.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("btn").click();
-    };
-});
+    //Funtion to set the question data for the question-content section
+    let setQuestionData = () => {
+        queryElement('#quizContent p').innerHTML = questions[qCount].question;
+        queryElement('#quizContent button:nth-of-type(1)').innerHTML = '1. ' + questions[qCount].choices[0];
+        queryElement('#quizContent button:nth-of-type(2)').innerHTML = '2. ' + questions[qCount].choices[1];
+        queryElement('#quizContent button:nth-of-type(3)').innerHTML = '3. ' + questions[qCount].choices[2];
+        queryElement('#quizContent button:nth-of-type(4)').innerHTML = '4. ' + questions[qCount].choices[3];
+    }
 
-// show high scores
-function displayHighscores() {
-    var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-    highScores.sort(function(a, b) {
-        return b.score-a.score;
-    
+    //Function that changes the question and uses a parameter to control what text is displayed based on the question. It will also provide a response of whether the answers provided are correct or not
+    let quizUpdate = (answerCopy) => {
+        queryElement('#scoreProvider p').innerHTML = answerCopy;
+        queryElement('#scoreProvider').classList.remove('invisible', scoreProvider());
+        Array.from(answers).forEach(answer =>
+            {
+                answer.classList.add('disable');
+            });
 
-    highScores.forEach(function(score) {
-        // list items for each score
-        var scoreList = document.createElement('li');
-        scoreList.innerHTML = ''+ score.score +' - '+ score.initials +'';
+        //If all the question have been answered or the timer reaches 0 the quiz section is exited and the final score is diplayed
+        setTimeout(() => {
+            if (qCount === questions.length) {
+                onlyDisplaySection("#finishedQuiz");
+                time = 0;
+                queryElement('#time').innerHTML = time;
+            }
+            else {
+                setQuestionData();
+                Array.from(answers).forEach(answer => {
+                answer.classList.remove('disable');
+                });
+            }
+        }, 1000);
+    }
 
-        // append to doc
-        var list = document.querySelector('.high-scores');
-        list.appendChild(scoreList);
+    //Function for time decrement during the quiz
+    let myTimer = () => {
+        if (time > 0) {
+            time = time - 1;
+            queryElement('#time').innerHTML = time;
+        }
+        else {
+            clearInterval(clock);
+            queryElement('#score').innerHTML = score;
+            onlyDisplaySection("#finishedQuiz");
+        }
+    }
+
+    //Quiz Start and Timer
+    let clock;
+        queryElement("#quizIntro button").addEventListener("click", (e) => {
+        setQuestionData();
+        onlyDisplaySection("#quizContent")
+        clock = setInterval(myTimer, 1000);
     });
 
-}   )
+    let scoreProvider = () => {
+        clearTimeout(timeset);
+        timeset = setTimeout(() => {
+            queryElement('#scoreProvider').classList.add('invisible');
 
-//delete high scores
-var deleteBtn = document.querySelector('#clear-scores')
-deleteBtn.onclick = deleteScores;
+        }, 1000);
+    }
+    
+    //Quiz Answer Checking
+    Array.from(answers).forEach(check => {
+        check.addEventListener('click', function (event) {
+            if (this.innerHTML.substring(3, this.length) === questions[qCount].answer) {
+                score = time;
+                qCount = qCount + 1;
+                quizUpdate("Correct");
+            } 
+            else {
+                time = time - 10;
+                qCount = qCount + 1;
+                score = time;
+                quizUpdate("Wrong");
+            }
+        });
+    });
 
-function deleteScores() {
-    localStorage.removeItem('highScores');
-    location.reload();
-}
+    //Score Submission
 
-displayHighscores()}
+    //Displays error messiage if initials given do not meet requirements
+    let errors = () => {
+        clearTimeout(timeset);
+        timeset = setTimeout(() => {
+            queryElement('#errors').classList.add('invisible');
+        }, 3000);
+    }
+
+    //Error handling for submiting high scores
+    queryElement("#submit").addEventListener("click", () => {
+        let initialsRecord = queryElement('#initials').value;
+        if (initialsRecord === ''){
+            queryElement('#errors p').innerHTML = "You need at least 1 character";
+            queryElement('#errors').classList.remove('invisible', errors());
+        }
+        else if (initialsRecord.match(/[[A-Za-z]/) === null) {
+            queryElement('#errors p').innerHTML = "Only letters for initials allowed.";
+            queryElement('#errors').classList.remove('invisible', errors());
+        }
+        else if (initialsRecord.length > 5) {
+            queryElement('#errors p').innerHTML = "Maximum of 5 characters allowed.";
+            queryElement('#errors').classList.remove('invisible', errors());
+        }
+        else {
+            //Sends value to current array for use now.
+            recordsArray.push({
+                "initialRecord": initialsRecord,
+                "score": score
+             });
+
+            //Sends value to local storage for later use.
+            localStorage.setItem('recordsArray', JSON.stringify(recordsArray));
+            queryElement('#highScores div').innerHTML = '';
+            onlyDisplaySection("#highScores");
+            recordsHtmlReset();
+            queryElement("#initials").value = '';
+        }
+    });
+    //High Score and Local Storage
+    //Clears the highscores from the html, array, and local storage
+    queryElement('#clearScores').addEventListener("click", () => {
+        recordsArray = [];
+        queryElement('#highScores div').innerHTML = "";
+        localStorage.removeItem('recordsArray');
+    });
+
+    //Resets all quiz settings to the default so that the user can replay the quiz
+    queryElement("#reset").addEventListener("click", () => {
+        time = initialTime;
+        score = 0;
+        qCount = 0;
+        onlyDisplaySection("#quizIntro");
+    });
+ //This part leaves the quiz to view the high scores in the case that the user does this before completing the quiz
+    queryElement("#quizScores").addEventListener("click", (e) => {
+        e.preventDefault();
+        clearInterval(clock);
+        queryElement('#time').innerHTML = 0;
+        time = initialTime;
+        score = 0;
+        qCount = 0;
+        onlyDisplaySection("#highScores");
+        recordsHtmlReset();
+    });
+
+});
