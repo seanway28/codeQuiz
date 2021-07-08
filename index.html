@@ -1,45 +1,63 @@
-Index.html
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Time</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <script src="./assets/script.js"></script>
 </head>
 
 <body>
-    <div class="hs container">
-        <h2>High Scores</h2>
-        <ol class="high-scores"></ol>
-        <button id="clear-scores" class="li-btn btn">Clear Highscores</button>
-    </div>
-    <div id='introContainer' class="container">
-        <div>You are about to take a JavaScript quiz.  It will be a 90 second quiz. <br>For each wrong answer 5 seconds will be deducted from the final time score. <br> The quiz is over when you answer all questions or the timer runs out.<br> When you are ready to begin click the Start Quiz button.<br> GOOD LUCK!</div>
-        <button id="start-btn" class='btn'>Start Quiz</button>
-    </div>
-    <div class="showTime container"><span>Time Remaining:</span><span id="timer"> 90</span></div>
-    <div id="quiz">
-
-        <div id="questionContainer">
-            <div id="question"></div>
-            <div id="choices"></div>
+    <header>
+        <div class="info">
+            <button id="quizScores" href="">View High Scores</button>
+            <div id="timer"><p>Time: <span id="time">0</span></p></div>
         </div>
-    </div>
-    <div id="resultContainer" class="container">
-        <h2> Congratulations You Completed the Quiz!</h2>
+    </header>
 
-        <p>Your final score is <span id="final-score"></span>.</p>
-        <form>
-            Enter initials: <input type="text" id="initials" max="2">
-            <input id="btn" type="submit" value="Submit" onclick="saveScore();">
-        </form>
+    <div class="codeQuiz">
+        <section id="quizIntro">
+            <h1>Coding Quiz Challenge</h1>
+            <p>
+            Try to answer the following code-related questions within the time limt. 
+            Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+            </p>
+            <button>Start Quiz</button>
+        </section>
+
+        <section id="quizContent" class="hide">
+            <p id="title"></p>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <div id="scoreProvider" class="invisible">
+                <p>&nbsp;</p>
+            </div>
+        </section>
+
+        <section id="finishedQuiz" class="hide">
+            <h1>Quiz complete!</h1>
+            <p>Your final score is&nbsp; <span id="score"></span></p>
+            <div id ="scoreRecords">
+                <p>Enter initials: </p><input id="initials" type="text"> <button id="submit">Submit</button>
+            </div>
+            <div id = "errors" class="invisible">
+                <p>&nbsp;</p>
+            </div>
+        </section>
+
+        <section id="highScores" class="hide">
+            <h1>High Scores</h1>
+            <div>
+
+
+            </div>
+            <button id="reset">Go Back</button> 
+            <button id="clearScores">Clear High Scores</button>
+        </section>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
-  

@@ -30,8 +30,8 @@ var questionsArr = [
 }
 
 {
-    question: 'If you want to know the number of elements in an array, what property should you use?',
-    answers; ['prototype property', 'reverse property', 'length property', 'shift property'],
+    question: 'What National League baseball team holds the most World Series Titles?',
+    answers; ['Chicago Cubs', 'Atlanta Braves', 'St. Louis Cardinals', 'shift property'],
     correctChoice; 2
 }
 
