@@ -1,12 +1,11 @@
-Script.js
 document.addEventListener('DOMContentLoaded', (event) => {
 
     //Array of questions
     var questions = [
         {
-            question: "String Values must be enclosed within ____ when being assigned to variables. ",
-            choices: ["commas", "curly brackets", "quotes", "parenthesis"],
-            answer: "quotes"
+            question: "Arrays in JavaScript can be used to store____",
+            choices: ["numbers and strings","others Arrays","booleances", "all of the above"],
+            answer: "all of the above"
         },
         {
             question: "The condition in an if / else statement is enclosed within .",
@@ -19,14 +18,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
             answer: "sequence"
         },
         {
-            question: "which of these is NOT a way to save a variable?",
+            question: "which of these is not a way to save a variable?",
             choices: ["vet", "var", "let", "const"],
             answer: "vet"
         },
         {
-            question: "Arrays in Javascript can be used to store_____",
-            choices: ["numbers and strings", "other arrays", "booleans", "All of the above"],
-            answer: "All of the above"
+            question: "A very useful tool used during development and debugging for printing content to the debugger is____",
+            choices: ["JavaScript","terminal/bash","alerts", "console.log"],
+            answer: "console.log"
         },
     ];
 
@@ -210,7 +209,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         qCount = 0;
         onlyDisplaySection("#quizIntro");
     });
- //This part leaves the quiz to view the high scores in the case that the user does this before completing the quiz
+
+    //This part leaves the quiz to view the high scores in the case that the user does this before completing the quiz
     queryElement("#quizScores").addEventListener("click", (e) => {
         e.preventDefault();
         clearInterval(clock);
@@ -221,5 +221,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         onlyDisplaySection("#highScores");
         recordsHtmlReset();
     });
+
 
 });
