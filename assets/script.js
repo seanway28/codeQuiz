@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             answer: "sequence"
         },
         {
-            question: "which of these is not a way to save a variable?",
+            question: "which of these is NOT a way to save a variable?",
             choices: ["vet", "var", "let", "const"],
             answer: "vet"
         },
